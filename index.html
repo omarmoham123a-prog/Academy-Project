@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أكاديمية عِباد الرحمن | منارة علوم القرآن</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;500;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #1e4620;
+            --secondary: #0a2540;
+            --accent: #b8860b;
+            --bg-light: #f9fbf9;
+            --white: #ffffff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        body { font-family: 'Tajawal', sans-serif; background-color: var(--bg-light); color: #333; line-height: 1.8; }
+
+        /* الهيدر */
+        header { background: var(--white); padding: 15px 5%; box-shadow: 0 2px 15px rgba(0,0,0,0.08); position: sticky; top: 0; z-index: 1000; }
+        nav { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; }
+        .logo { font-family: 'Amiri', serif; font-size: 2rem; color: var(--primary); font-weight: bold; }
+        .nav-links a { text-decoration: none; color: var(--secondary); margin-right: 25px; font-weight: 600; font-size: 0.95rem; transition: 0.3s; }
+        .nav-links a:hover { color: var(--accent); }
+
+        /* قسم الهيرو */
+        .hero {
+            height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('https://i.postimg.cc/mD363Y7c/1g1nRBDY.jpg');
+            background-size: cover; background-position: center; background-attachment: fixed;
+        }
+        .hero-content h1 { font-family: 'Amiri', serif; font-size: 4rem; margin-bottom: 20px; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
+        .hero-content p { font-size: 1.5rem; max-width: 800px; margin: 0 auto 30px; font-weight: 300; }
+
+        /* قسم الإحصائيات - لزيادة الثقة */
+        .stats { background: var(--primary); color: white; padding: 40px 5%; display: flex; justify-content: space-around; flex-wrap: wrap; text-align: center; }
+        .stat-item h2 { font-size: 2.5rem; color: var(--accent); }
+
+        /* قسم عن الأكاديمية */
+        section { padding: 100px 10%; }
+        .section-title { text-align: center; font-family: 'Amiri', serif; font-size: 3rem; color: var(--primary); margin-bottom: 50px; }
+        
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
+        .feature-card { background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); text-align: center; transition: 0.4s; }
+        .feature-card:hover { transform: translateY(-10px); border-bottom: 5px solid var(--accent); }
+        .feature-card i { font-size: 3rem; color: var(--accent); margin-bottom: 20px; }
+
+        /* قسم خطوات الانضمام */
+        .steps { background: #eff3ef; }
+        .steps-container { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 20px; }
+        .step { flex: 1; min-width: 200px; text-align: center; position: relative; }
+        .step-num { width: 50px; height: 50px; background: var(--accent); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px; font-weight: bold; font-size: 1.2rem; }
+
+        /* قسم التسجيل - وفيه نظام الأسعار الذكي */
+        .registration { background: white; }
+        .form-wrapper { max-width: 800px; margin: 0 auto; background: var(--bg-light); padding: 50px; border-radius: 30px; box-shadow: 0 20px 50px rgba(0,0,0,0.1); }
+        .form-group { margin-bottom: 25px; }
+        .form-group label { display: block; margin-bottom: 10px; font-weight: bold; color: var(--secondary); }
+        .form-group input, .form-group select { width: 100%; padding: 15px; border: 2px solid #e0e0e0; border-radius: 12px; font-family: 'Tajawal'; font-size: 1rem; outline: none; transition: 0.3s; }
+        .form-group input:focus { border-color: var(--primary); }
+
+        /* نظام إظهار الأسعار */
+        #price-display { background: #fffde7; border: 2px dashed var(--accent); padding: 20px; border-radius: 12px; margin-top: 20px; display: none; }
+        .price-option { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #eee; }
+        .price-option:last-child { border: none; }
+
+        .btn-submit { background: var(--primary); color: white; border: none; padding: 20px; border-radius: 12px; width: 100%; font-size: 1.2rem; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        .btn-submit:hover { background: var(--secondary); transform: scale(1.02); }
+
+        /* الفوتر */
+        footer { background: var(--secondary); color: white; padding: 80px 5% 30px; text-align: center; }
+        .social-links { margin-bottom: 40px; }
+        .social-links a { color: white; font-size: 2rem; margin: 0 20px; transition: 0.3s; }
+        .social-links a:hover { color: var(--accent); }
+
+        @media (max-width: 768px) { .hero-content h1 { font-size: 2.5rem; } .nav-links { display: none; } }
+/* تنسيق قسم المكتبة */
+.library-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.book-card {
+    background: #fff;
+    border: 1px solid #e0dcd0;
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.book-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.book-icon {
+    font-size: 40px;
+    color: #5d4037; /* اللون الخشبي اللي اخترناه */
+    margin-bottom: 10px;
+}
+
+.download-btn {
+    display: block;
+    margin-top: 10px;
+    padding: 8px;
+    background-color: #2e7d32;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+    </style>
+</head>
+<body>
+
+<header>
+    <nav>
+        <div class="logo">أكاديمية عِباد الرحمن</div>
+        <div class="nav-links">
+            <a href="#about">رسالتنا</a>
+            <a href="#steps">كيف نبدأ؟</a>
+            <a href="#register">الانضمام</a>
+            <a href="#contact">تواصل معنا</a>
+        </div>
+    </nav>
+</header>
+
+<section class="hero">
+    <div class="hero-content">
+        <h1>نورٌ يضيء القلوب بالقرآن</h1>
+        <p>بيئة تربوية آمنة لتعلم كتاب الله، تلاوةً وحفظاً وتدبراً، على أيدي نخبة من المعلمين المتقنين.</p>
+        <a href="#register" class="btn-submit" style="text-decoration: none; width: auto; padding: 15px 40px; background: var(--accent);">سجل اهتمامك الآن</a>
+    </div>
+</section>
+
+<div class="stats">
+    <div class="stat-item"><h2>500+</h2><p>طالب وطالبة</p></div>
+    <div class="stat-item"><h2>50+</h2><p>معلم مجاز</p></div>
+    <div class="stat-item"><h2>100%</h2><p>حلقات تفاعلية</p></div>
+    <div class="stat-item"><h2>10+</h2><p>سنوات خبرة</p></div>
+</div>
+
+<section id="about">
+    <h2 class="section-title">لماذا يختارنا الطلاب؟</h2>
+    <div class="features-grid">
+        <div class="feature-card">
+            <i class="fas fa-quran"></i>
+            <h3>منهجية الإتقان</h3>
+            <p>لا نركز على الكم فقط، بل نهتم بجودة الحفظ وإتقان مخارج الحروف وأحكام التجويد بدقة.</p>
+        </div>
+        <div class="feature-card">
+            <i class="fas fa-users-cog"></i>
+            <h3>متابعة فردية</h3>
+            <p>كل طالب له خطة خاصة تتناسب مع قدراته ووقته، مع تقارير دورية لولي الأمر.</p>
+        </div>
+        <div class="feature-card">
+            <i class="fas fa-laptop-house"></i>
+            <h3>تعلم من مكانك</h3>
+            <p>حصص مباشرة عبر زووم توفر عليك عناء المشوار، وتجعل القرآن رفيق منزلك.</p>
+        </div>
+    </div>
+</section>
+
+<section class="steps" id="steps">
+    <h2 class="section-title">رحلة انضمامك إلينا</h2>
+    <div class="steps-container">
+        <div class="step"><div class="step-num">1</div><h3>سجل بياناتك</h3><p>املأ الاستمارة وسيتواصل معك المشرف</p></div>
+        <div class="step"><div class="step-num">2</div><h3>تحديد المستوى</h3><p>مقابلة قصيرة لتحديد أنسب حلقة لك</p></div>
+        <div class="step"><div class="step-num">3</div><h3>البداية المباركة</h3><p>انطلق في رحلتك مع كتاب الله</p></div>
+    </div>
+</section>
+
+<section class="registration" id="register">
+    <div class="form-wrapper">
+        <h2 style="text-align: center; margin-bottom: 40px; font-family: 'Amiri'; font-size: 2.5rem; color: var(--primary);">طلب اشتراك جديد</h2>
+        <form id="regForm">
+            <div class="form-group">
+                <label>اسم الطالب/الطالبة</label>
+                <input type="text" placeholder="اكتب الاسم الرباعي" required>
+            </div>
+            <div class="form-group">
+                <label>رقم هاتف ولي الأمر (واتساب)</label>
+                <input type="tel" placeholder="01xxxxxxxxx" required>
+            </div>
+            <div class="form-group">
+                <label>ما المجال الذي تود دراسته؟</label>
+                <select id="courseSelect" onchange="showPrices()" required>
+                    <option value="">-- اختر المسار --</option>
+                    <option value="quran">حفظ القرآن الكريم</option>
+                    <option value="tajweed">أحكام التجويد والإتقان</option>
+                    <option value="nourania">القاعدة النورانية (تأسيس)</option>
+                    <option value="seerah">السيرة النبوية والآداب</option>
+                </select>
+            </div>
+
+            <!-- قسم الأسعار المخفي الذي يظهر عند الاختيار -->
+            <div id="price-display">
+                <p style="font-weight: bold; color: var(--primary); margin-bottom: 10px;"><i class="fas fa-info-circle"></i> الباقات المتاحة لهذا المسار:</p>
+                <div class="price-option"><span>باقة الحصة الأسبوعية:</span> <strong>150 ج.م / شهر</strong></div>
+                <div class="price-option"><span>باقة الحصتين (مكثف):</span> <strong>250 ج.م / شهر</strong></div>
+                <div class="price-option"><span>باقة الثلاث حصص (خاص):</span> <strong>400 ج.م / شهر</strong></div>
+                <p style="font-size: 0.8rem; color: #777; margin-top: 10px;">* يمكنك اختيار الباقة المناسبة لك أثناء مكالمة تحديد المستوى.</p>
+            </div>
+
+            <button type="submit" class="btn-submit" style="margin-top: 20px;">إرسال طلب الانضمام</button>
+        </form>
+    </div>
+</section>
+<div class="container">
+    <div class="card">
+        <h3>📚 المكتبة الرقمية</h3>
+        <p>تحميل المناهج والكتب التعليمية الخاصة بالأكاديمية:</p>
+        
+        <div class="library-grid">
+            <!-- الكتاب الأول -->
+            <div class="book-card">
+                <div class="book-icon">📖</div>
+                <h4>القاعدة النورانية</h4>
+                <a href="رابط_الملف_هنا.pdf" class="download-btn">تحميل PDF</a>
+            </div>
+
+            <!-- الكتاب الثاني -->
+            <div class="book-card">
+                <div class="book-icon">📜</div>
+                <h4>متن الجزرية</h4>
+                <a href="رابط_الملف_هنا.pdf" class="download-btn">تحميل PDF</a>
+            </div>
+
+            <!-- الكتاب الثالث -->
+            <div class="book-card">
+                <div class="book-icon">🕌</div>
+                <h4>أذكار المسلم</h4>
+                <a href="رابط_الملف_هنا.pdf" class="download-btn">تحميل PDF</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer id="contact">
+    <div class="social-links">
+        <a href="https://www.facebook.com/share/17pB1u2qAe/"><i class="fab fa-facebook"></i></a>
+        <a href="https://www.instagram.com/ebad_alrahman_academy"><i class="fab fa-instagram"></i></a>
+        <a href="https://t.me/+201055887819"><i class="fab fa-telegram"></i></a>
+        <a href="https://us05web.zoom.us/launch/chat?email=omarmohamed765%40icloud.com"><i class="fas fa-video"></i></a>
+    </div>
+    <div style="font-size: 1.1rem; margin-bottom: 20px;">
+        <p><i class="fas fa-phone-alt"></i> تواصل مباشر (واتساب): 01055887819</p>
+        <p><i class="fas fa-envelope"></i> omarmohamed765@icloud.com</p>
+    </div>
+    <p style="opacity: 0.6; font-size: 0.8rem;">© 2026 جميع الحقوق محفوظة لأكاديمية عباد الرحمن لعلوم القرآن</p>
+<div class="container">
+    <div class="card">
+     
+</footer>
+
+<script>
+    function showPrices() {
+        var select = document.getElementById("courseSelect");
+        var priceDiv = document.getElementById("price-display");
+        if (select.value !== "") {
+            priceDiv.style.display = "block";
+        } else {
+            priceDiv.style.display = "none";
+        }
+    }
+</script>
+</body>
+</html>
